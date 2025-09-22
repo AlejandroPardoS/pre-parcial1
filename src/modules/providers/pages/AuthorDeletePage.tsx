@@ -1,9 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useEffect, useState, useRef} from "react";
 import { useParams, useRouter } from "next/navigation"; // Hook from Next.js for navigation
 import { deleteAuthor } from "@/modules/providers/services/providerService";
-import Home from "@/app/page";
 
 export default function ServiceDeletePage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -11,15 +10,17 @@ export default function ServiceDeletePage() {
   const router = useRouter(); // Get the router to redirect
   const params = useParams();
   const id = Number(params?.id);
+  const executedRef = useRef(false);
 
 
   useEffect(() => {
-    const fetchAuthor = async () => {
+    if (executedRef.current) return;
+    executedRef.current = true;
+    const deleteaAuthor = async () => {
       setIsSubmitting(true);
       setError(null);
       try {
         await deleteAuthor(id);
-        router.push("/authors"); // Redirect to the provider's home page
       } catch (err) {
         setError(
           err instanceof Error
@@ -27,11 +28,12 @@ export default function ServiceDeletePage() {
             : "An error occurred while deleting the author."
         );
       } finally {
+        router.push("/authors"); // Redirect to the provider's home page
         setIsSubmitting(false);
       }
     };
-    if (id) fetchAuthor();
+    if (id) deleteaAuthor();
   }, [id, router]);
 
-  return (<Home />);
+  return <p>Eliminando autor...</p>;
 }
