@@ -16,6 +16,12 @@ export default function Home() {
         >
           Crear Autores
         </Link>
+        <Link 
+          href="/books"
+          className="bg-yellow-400 text-black font-bold py-2 px-6 rounded hover:bg-yellow-500 disabled:bg-gray-300"
+        >
+          Ver Libros
+        </Link>
       </div>
     </main>
   );

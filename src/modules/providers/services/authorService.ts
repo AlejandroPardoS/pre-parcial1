@@ -1,6 +1,6 @@
 import { fetcher } from "@/shared/services/http";
 import { AuthorFormData } from "@/modules/providers/validation/authorSchema";
-import { Author } from "@/modules/authors/services/authorService"; // Reutilizamos la interfaz
+import { Author } from "@/modules/authors/page"; // Reutilizamos la interfaz
 
 /**
  * Create a new service by sending the form data to the API.

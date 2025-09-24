@@ -4,8 +4,8 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation"; // Hook from Next.js for navigation
 import AuthorFormUpdate from "@/modules/providers/ui/AuthorFormUpdate";
 import { AuthorFormData } from "@/modules/providers/validation/authorSchema";
-import { getAuthorById, updateAuthor } from "@/modules/providers/services/providerService";
-import { Author } from "@/modules/authors/services/authorService";
+import { getAuthorById, updateAuthor } from "@/modules/providers/services/authorService";
+import { Author } from "@/modules/authors/page";
 
 export default function ServiceUpdatePage() {
   const [author, setAuthor] = useState<Author>();

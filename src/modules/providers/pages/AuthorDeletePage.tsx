@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useRef} from "react";
 import { useParams, useRouter } from "next/navigation"; // Hook from Next.js for navigation
-import { deleteAuthor } from "@/modules/providers/services/providerService";
+import { deleteAuthor } from "@/modules/providers/services/authorService";
 
 export default function ServiceDeletePage() {
   const [isSubmitting, setIsSubmitting] = useState(false);

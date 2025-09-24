@@ -1,9 +1,26 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { Author, fetchAuthors } from "@/modules/authors/services/authorService"
 import Link from "next/link";
+import { fetcher } from "@/shared/services/http";
+import { Book } from "@/modules/books/page";
+import { Prize } from "@/modules/prizes/page";
 
+export interface Author {
+    id: number;
+    birthDate: string;
+    name: string;
+    description: string;
+    image: string;
+    books: Book[];
+    prizes: Prize[];
+}
+
+export const fetchAuthors = (): Promise<Author[]> => {
+  // We call the GET /authors endpoint.
+  // The fetcher takes care of the base URL and error handling.
+  return fetcher<Author[]>("/authors");
+};
 
 export function AuthorsApp() {
   const [authors, setAuthors] = useState<Author[]>([])

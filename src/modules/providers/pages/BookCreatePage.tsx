@@ -2,25 +2,25 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation"; // Hook from Next.js for navigation
-import { AuthorFormData } from "@/modules/providers/validation/authorSchema";
-import { createAuthor } from "@/modules/providers/services/authorService";
-import AuthorForm from "../ui/AuthorFormUpdate";
+import { BookFormData } from "../validation/bookSchema";
+import { createBook } from "../services/bookService";
+import BookForm from "../ui/BookForm";
 
-export default function ServiceCreatePage() {
+export default function BookCreatePage() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const router = useRouter(); // Get the router to redirect
 
-  const handleCreateAuthor = async (data: AuthorFormData) => {
+  const handleCreateBook = async (data: BookFormData) => {
     setIsSubmitting(true);
     try {
-      await createAuthor(data);
+      await createBook(data);
       // Success! This is where we would show a global notification.
       // For now, we simply redirect.
-      router.push("/authors"); // Redirect to the provider's home page
+      router.push("/books"); // Redirect to the provider's home page
     } catch {
       setError(
-        "No se pudo crear el autores. Por favor, intente más tarde."
+        "No se pudo crear el libro. Por favor, intente más tarde."
       );
     } finally {
       setIsSubmitting(false);
@@ -29,8 +29,8 @@ export default function ServiceCreatePage() {
 
   return (
     <div className="container mx-auto p-8">
-      <h1 className="text-3xl font-bold mb-6">Crear Nuevo Autor</h1>
-      <AuthorForm onSubmit={handleCreateAuthor} isSubmitting={isSubmitting} />
+      <h1 className="text-3xl font-bold mb-6">Crear Nuevo Libro</h1>
+      <BookForm onSubmit={handleCreateBook} isSubmitting={isSubmitting} />
       {error && <p className="text-red-500 mt-4">{error}</p>}
     </div>
   );
